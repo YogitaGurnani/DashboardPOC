@@ -4,7 +4,8 @@
 			<pages>
 				<Page id="page" title="{i18n>title}">
 					<content>
-						<Button text="Alert" press="onPressButton"/>
+						<Button text="Alert" press="onPressButton"
+						/>
 					</content>
 				</Page>
 			</pages>

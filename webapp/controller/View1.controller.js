@@ -11,5 +11,6 @@ sap.ui.define([
 			onPressButton : function(){
 				MessageBox.alert("Welcome to Dashboard");
 			}
+			
 		});
 });
