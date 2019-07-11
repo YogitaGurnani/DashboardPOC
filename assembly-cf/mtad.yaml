@@ -1,0 +1,50 @@
+_schema-version: '3.1'
+ID: com.DashboardPOC
+version: 1.7.0
+
+modules:
+ - name: DashboardPOC
+   type: javascript.nodejs
+   path: DashboardPOC
+   parameters:
+     memory: 128M
+   properties:
+     TENANT_HOST_PATTERN: ^(.*)-registration-flp-${space}.${default-domain}
+   provides:   
+      - name: backend
+        properties: 
+          binding_url: "${default-url}"
+          type: com.sap.ac.destination
+        public: true
+      - name: orgonboarding-web-destination
+        public: true
+        properties: 
+          name: ${app-name}
+          binding_url: "${default-url}"
+          type: com.sap.iot.ac.destination
+        parameters:
+          visibility:
+            - org: '*'
+      - name: orgonboarding-web-route
+        public: true
+        properties:
+          type: com.sap.iot.ac.plugin
+          name: ${app-name}
+          source: "^/sap/iot/ain/orgonboarding/(.*)$"
+          target: "$1"
+          destination: ${app-name}
+        parameters:
+          visibility:
+            - org: '*'
+   requires:
+     -  name: ain
+        group: destinations
+        properties: 
+          name: ain
+          url: ~{binding_url}
+          forwardAuthToken: true
+resources:
+  -  name: ain
+     type: configuration
+     parameters: 
+       provider-id: com.sap.iot.ain.cf:backend

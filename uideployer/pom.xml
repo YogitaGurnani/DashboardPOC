@@ -1,0 +1,58 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+		<groupId>com.sap.pdms</groupId>
+		<artifactId>pdms-node</artifactId>
+		<version>1.7.9</version>
+		<relativePath/>
+	</parent>
+
+    <groupId>com.sap.iot.ain</groupId>
+    <artifactId>DashboardPOC-deployer</artifactId>
+    <version>1.9.0</version>
+    <packaging>pom</packaging>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-dependency-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.github.eirslett</groupId>
+				<artifactId>frontend-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>npm-install</id>
+						<goals>
+							<goal>npm</goal>
+						</goals>
+						<configuration>
+							<!-- https://github.com/eirslett/frontend-maven-plugin/issues/384 -->
+							<arguments>install --no-proxy --production --registry=${npm.registry}</arguments>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <configuration>
+                    <filesets>
+						<fileset>
+							<directory>./</directory>
+							<includes>
+								<include>node_modules/**</include>
+								<include>node/**</include>
+								<include>target/**</include>
+								<include>reports/**</include>
+								<include>dist/**</include>
+								<include>etc/**</include>
+							</includes>
+						</fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+		</plugins>
+	</build>
+</project>

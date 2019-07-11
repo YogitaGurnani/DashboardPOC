@@ -1,0 +1,18 @@
+{
+    "authenticationMethod": "none",
+    "routes": [
+        {
+            "csrfProtection": false,
+            "source": "^/ac/(.*)$",
+            "target": "/ain/$1",
+            "service": "com.sap.dsc.iam.assetcentral",
+            "endpoint": "asset-central-service",
+            "authenticationType": "xsuaa"
+        }, {
+            "source": "^(/.*)$",
+            "target": "$1",
+            "service": "html5-apps-repo-rt",
+            "authenticationType": "xsuaa"
+        }
+    ]
+}

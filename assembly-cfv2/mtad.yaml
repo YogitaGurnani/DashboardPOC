@@ -1,0 +1,24 @@
+_schema-version: '3.1'
+ID: com.sap.dsc.ac.DashboardPOC.deployer
+version: 1.8.0
+
+modules:
+ - name: DashboardPOC-deployer
+   path: uideployer
+   parameters:
+     memory: 128M
+   requires:
+    - name: DashboardPOC-dt
+   type: com.sap.html5.application-content
+
+parameters:
+   deploy_mode: html5-repo
+   
+resources:
+ - name: DashboardPOC-dt
+   parameters:
+      service: html5-apps-repo
+      service-plan: app-host
+      config:
+        sizeLimit: 4
+   type: org.cloudfoundry.managed-service
