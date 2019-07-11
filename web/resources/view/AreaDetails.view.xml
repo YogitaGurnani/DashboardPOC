@@ -1,0 +1,24 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:viz="sap.viz.ui5.controls"
+	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" xmlns="sap.m" controllerName="pocNameSpace.poc.controller.AreaDetails"
+	xmlns:viz.data="sap.viz.ui5.data" xmlns:html="http://www.w3.org/1999/xhtml">
+	<FlexBox alignItems="Center">
+		<viz:VizFrame id="DueDateGridFrame" vizType="info/donut" uiConfig="{applicationSet:'fiori'}"
+			vizProperties="{plotArea:{dataLabel:{visible: true}}}" data="{/businessData}">
+			<viz:dataset>
+				<viz.data:FlattenedDataset data="{/businessData}">
+					<viz.data:dimensions>
+						<viz.data:DimensionDefinition name="GroupType" value="{GROUP_TYPE}" displayValue="{DISPLAY_NAME}"/>
+					</viz.data:dimensions>
+					<viz.data:measures>
+						<viz.data:MeasureDefinition value="{GROUP_VOLUME}" name="RECORDS"/>
+					</viz.data:measures>
+				</viz.data:FlattenedDataset>
+			</viz:dataset>
+			<viz:feeds>
+				<viz.feeds:FeedItem uid="size" type="Measure" values="RECORDS"/>
+				<viz.feeds:FeedItem uid="color" type="Dimension" values="GroupType"/>
+			</viz:feeds>
+		</viz:VizFrame>
+		<viz:Popover id="vizPopover"></viz:Popover>
+	</FlexBox>
+</mvc:View>

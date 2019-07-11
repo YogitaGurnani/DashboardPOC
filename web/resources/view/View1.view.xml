@@ -1,3 +1,45 @@
-<mvc:View controllerName="pocNameSpace.poc.controller.View1" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
-	<Button text="Alert" press="onPressButton"/>
+<mvc:View controllerName="pocNameSpace.poc.controller.View1" xmlns:tnt="sap.tnt" xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+	xmlns="sap.m">
+	<App id="app">
+		<pages>
+			<Page id="page" title="{i18n>Page-title}" showHeader="false">
+				<content>
+					<tnt:ToolPage id="dashboardToolPage" sideExpanded="false">
+						<tnt:header>
+							<tnt:ToolHeader>
+								<Button icon="sap-icon://menu2" type="Transparent" press="onPressHandleSideNavigation" tooltip="{i18n>menu}">
+									<layoutData>
+										<OverflowToolbarLayoutData priority="NeverOverflow"/>
+									</layoutData>
+								</Button>
+								<ToolbarSpacer></ToolbarSpacer>
+								<Title text="{i18n>home}"></Title>
+								<ToolbarSpacer></ToolbarSpacer>
+							</tnt:ToolHeader>
+						</tnt:header>
+						<tnt:sideContent>
+							<tnt:SideNavigation expanded="true" itemSelect="onNavigationItemSelectHandleDetailPage">
+								<tnt:NavigationList id="menuList">
+									<tnt:NavigationListItem id="navigationListUsersItem" text="{i18n>home}" icon="sap-icon://home" key="home"></tnt:NavigationListItem>
+									<tnt:NavigationListItem text="{i18n>area-wise-analysis}" icon="sap-icon://area-chart" key="area"></tnt:NavigationListItem>
+									<tnt:NavigationListItem text="{i18n>asset-details}" icon="sap-icon://machine" key="asset"></tnt:NavigationListItem>
+									<tnt:NavigationListItem text="Risk Matrix" icon="sap-icon://tableView" key="work"></tnt:NavigationListItem>
+								</tnt:NavigationList>
+							</tnt:SideNavigation>
+						</tnt:sideContent>
+						<tnt:mainContents>
+							<NavContainer id="dashboardNavContainer">
+								<pages>
+									<mvc:XMLView id="homeDetails" type="XML" viewName='pocNameSpace.poc.view.Home'></mvc:XMLView>
+									<mvc:XMLView id="areaDetails" type="XML" viewName='pocNameSpace.poc.view.AreaDetails'></mvc:XMLView>
+									<mvc:XMLView id="assetDetails" type="XML" viewName='pocNameSpace.poc.view.AssetDetails'></mvc:XMLView>
+									<mvc:XMLView id="workDetails" type="XML" viewName='pocNameSpace.poc.view.WorkDetails'></mvc:XMLView>
+								</pages>
+							</NavContainer>
+						</tnt:mainContents>
+					</tnt:ToolPage>
+				</content>
+			</Page>
+		</pages>
+	</App>
 </mvc:View>

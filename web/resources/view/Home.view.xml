@@ -1,0 +1,78 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:micro="sap.suite.ui.microchart"
+	controllerName="pocNameSpace.poc.controller.Home" xmlns:html="http://www.w3.org/1999/xhtml">
+	<FlexBox height="100%" justifyContent="Center" alignContent="Center" alignItems="Center">
+		<!--home page title shiwing asset details summary-->
+		<SlideTile class="sapUiTinyMarginBeginEnd sapUiSmallMarginTopBottom" transitionTime="250" displayTime="2500" tiles="{/assetListTile}">
+			<GenericTile backgroundImage="{background}" frameType="TwoByOne">
+				<TileContent footer="{footer}">
+					<NewsContent contentText="{contentText}" subheader="{subheader}"/>
+				</TileContent>
+			</GenericTile>
+		</SlideTile>
+		<!--Area Chart Generic Tile-->
+		<GenericTile header="Health Dynamics" frameType="TwoByOne" press="onPressGoToAreaDetails"
+			class="sapUiTinyMarginBeginEnd sapUiSmallMarginTopBottom">
+			<tileContent>
+				<TileContent footer="Health on Track" frameType="TwoByOne">
+					<content>
+						<micro:AreaMicroChart size="Responsive" minXValue="0" maxXValue="100" minYValue="0" maxYValue="100" view="Wide">
+							<micro:firstXLabel>
+								<micro:AreaMicroChartLabel label="June 1" color="Good"/>
+							</micro:firstXLabel>
+							<micro:lastXLabel>
+								<micro:AreaMicroChartLabel label="June 30" color="Critical"/>
+							</micro:lastXLabel>
+							<micro:firstYLabel>
+								<micro:AreaMicroChartLabel label="0M" color="Good"/>
+							</micro:firstYLabel>
+							<micro:lastYLabel>
+								<micro:AreaMicroChartLabel label="80M" color="Critical"/>
+							</micro:lastYLabel>
+							<micro:chart>
+								<micro:AreaMicroChartItem>
+									<micro:points>
+										<micro:AreaMicroChartPoint x="0" y="0"/>
+										<micro:AreaMicroChartPoint x="30" y="20"/>
+										<micro:AreaMicroChartPoint x="60" y="20"/>
+										<micro:AreaMicroChartPoint x="100" y="80"/>
+									</micro:points>
+								</micro:AreaMicroChartItem>
+							</micro:chart>
+							<micro:target>
+								<micro:AreaMicroChartItem>
+									<micro:points>
+										<micro:AreaMicroChartPoint x="0" y="0"/>
+										<micro:AreaMicroChartPoint x="30" y="30"/>
+										<micro:AreaMicroChartPoint x="60" y="40"/>
+										<micro:AreaMicroChartPoint x="100" y="90"/>
+									</micro:points>
+								</micro:AreaMicroChartItem>
+							</micro:target>
+							<micro:maxThreshold>
+								<micro:AreaMicroChartItem color="Good">
+									<micro:points>
+										<micro:AreaMicroChartPoint x="0" y="0"/>
+										<micro:AreaMicroChartPoint x="30" y="40"/>
+										<micro:AreaMicroChartPoint x="60" y="50"/>
+										<micro:AreaMicroChartPoint x="100" y="100"/>
+									</micro:points>
+								</micro:AreaMicroChartItem>
+							</micro:maxThreshold>
+							<micro:minThreshold>
+								<micro:AreaMicroChartItem color="Error">
+									<micro:points>
+										<micro:AreaMicroChartPoint x="0" y="0"/>
+										<micro:AreaMicroChartPoint x="30" y="20"/>
+										<micro:AreaMicroChartPoint x="60" y="30"/>
+										<micro:AreaMicroChartPoint x="100" y="70"/>
+									</micro:points>
+								</micro:AreaMicroChartItem>
+							</micro:minThreshold>
+						</micro:AreaMicroChart>
+					</content>
+				</TileContent>
+			</tileContent>
+		</GenericTile>
+		<!--Radial Chart : Digitization Progress or something-->
+	</FlexBox>
+</mvc:View>
