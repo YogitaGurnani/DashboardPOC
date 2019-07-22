@@ -7,7 +7,6 @@
         <version>1.7.9</version>
         <relativePath/>
     </parent>
-
 	<groupId>com.sap.iot.ain</groupId>
     <artifactId>orgonboarding</artifactId>
     <packaging>war</packaging>

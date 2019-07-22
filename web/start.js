@@ -8,5 +8,6 @@ require('https').globalAgent.options.ca = xsenv.loadCertificates();
 app.use('/',express.static(__dirname + '/resources'));
 
 app.listen(process.env.PORT, function(){
+	
     console.log('SAP AC frontend listening on port ' + process.env.PORT);
 });
