@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-   <parent>
+    <parent>
         <groupId>com.sap.pdms</groupId>
         <artifactId>pdms-assembly</artifactId>
         <version>1.7.9</version>
@@ -9,7 +9,7 @@
     </parent>
 
 	<groupId>com.sap.iot.ain</groupId>
-    <artifactId>DashboardPOC-assembly-cf</artifactId>
+    <artifactId>orgonboarding-assembly-cf</artifactId>
     <version>1.9.0</version>
     <packaging>pom</packaging>
     <build>
@@ -56,10 +56,10 @@
                                         </manifestEntries>
                                     </manifestSection>
                                     <manifestSection>
-                                        <name>DashboardPOC/</name>
+                                        <name>ain-orgonboarding-web/</name>
                                         <manifestEntries>
                                             <Content-Type>text/directory</Content-Type>
-                                            <MTA-Module>DashboardPOC</MTA-Module>
+                                            <MTA-Module>ain-orgonboarding-web</MTA-Module>
                                         </manifestEntries>
                                     </manifestSection>
                                 </manifestSections>
