@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.sap.pdms</groupId>
+        <artifactId>pdms-node</artifactId>
+        <version>1.7.9</version>
+        <relativePath/>
+    </parent>
+
+	<groupId>com.sap.iot.ain</groupId>
+    <artifactId>orgonboarding</artifactId>
+    <packaging>war</packaging>
+    <version>1.9.0</version>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-dependency-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+            </plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>parse-version</id>
+						<goals>
+							<goal>parse-version</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+            <plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<webXml>${project.basedir}/resources/WEB-INF/web.xml</webXml>
+					<warSourceDirectory>${project.basedir}/resources</warSourceDirectory>
+					<packagingExcludes>WEB-INF/classes/META-INF/test-resources/**</packagingExcludes>
+				</configuration>
+			</plugin>
+
+            <plugin>
+				<groupId>com.sap.ui5.tools.build</groupId>
+				<artifactId>maven-coldwater-plugin</artifactId>
+				<configuration>
+					<archivingFilters>
+						<filter>!META-INF/resources/version.json</filter>
+						<filter>!META-INF/resources/.Ui5Repository*</filter>
+						<filter>!META-INF/test-resources/**</filter>
+					</archivingFilters>
+					<skip>${skipBuildPlugins}</skip>
+					<scanNonStandardFolders>true</scanNonStandardFolders>
+				</configuration>
+				<executions>
+					<execution>
+						<id>merge-application-modules</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>merge-modules</goal>
+						</goals>
+						<configuration>
+							<resourceRoots>
+								<resourceRoot>
+									<folder>${project.basedir}/resources/</folder>
+									<autoDetectPrefix>true</autoDetectPrefix>
+									<filters>
+										<filter>!**/localService/**</filter>
+									</filters>
+								</resourceRoot>
+							</resourceRoots>
+							<outputFolder>${project.build.directory}/${project.build.finalName}</outputFolder>
+							<autoDetectOutputPrefix>true</autoDetectOutputPrefix>
+							<defaultPreloadFile>Component-preload.js</defaultPreloadFile>
+							<optimize>true</optimize>
+							<optimizerOptions>
+								<sortByCopyright>true</sortByCopyright>
+							</optimizerOptions>
+							<usePredefineCalls>true</usePredefineCalls>
+							<useUtf8ForProperties>false</useUtf8ForProperties>
+							<verbose>true</verbose>
+						</configuration>
+					</execution>
+					<execution>
+						<id>optimize-war</id>
+						<phase>package</phase>
+						<goals>
+							<goal>optimize</goal>
+						</goals>
+						<configuration>
+							<optimizeDefaultArtifact>false</optimizeDefaultArtifact>
+							<excludes>
+								<exclude>**/Component-preload.js</exclude>
+							</excludes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<!--  Prepare the optimized files -->
+						<id>generate-dbg-resources</id>
+						<phase>install</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<skip>${skipBuildPlugins}</skip>
+							<target>
+								<unzip src="${project.build.directory}/${project.build.finalName}-opt.war" dest="${project.build.directory}/resources"/>
+								<replace token="${" value="${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}" dir="${project.build.directory}/resources">
+									<include name="manifest.json"/>
+								</replace>
+								<replace token="project.version}" value="" dir="${project.build.directory}/resources">
+									<include name="manifest.json"/>
+								</replace>
+								<zip destfile="${project.build.directory}/manifest-bundle.zip">
+									<fileset dir="${project.build.directory}/resources" includes="manifest.json"/>
+									<fileset dir="${project.build.directory}/resources" includes="i18n/"/>
+								</zip>
+							</target>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+        </plugins>
+    </build>
+</project>
