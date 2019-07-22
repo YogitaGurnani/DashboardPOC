@@ -14,14 +14,14 @@
     <fileSets>
         <fileSet>
             <directory>../web/target</directory>
-            <outputDirectory>DashboardPOC</outputDirectory>
+            <outputDirectory>ain-orgonboarding-web</outputDirectory>
             <includes>
 				<include>resources/</include>
             </includes>
         </fileSet>
 		<fileSet>
             <directory>../web</directory>
-            <outputDirectory>DashboardPOC</outputDirectory>
+            <outputDirectory>ain-orgonboarding-web</outputDirectory>
             <includes>
 				<include>xs-app.json</include>
                 <include>package.json</include>

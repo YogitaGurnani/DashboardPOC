@@ -9,7 +9,7 @@
     </parent>
 
     <groupId>com.sap.iot.ain</groupId>
-    <artifactId>DashboardPOC-assembly-cfv2</artifactId>
+    <artifactId>orgonboarding-assembly-cfv2</artifactId>
     <version>1.9.0</version>
     <packaging>pom</packaging>
     <build>
@@ -59,7 +59,7 @@
                                         <name>uideployer/</name>
                                         <manifestEntries>
                                             <Content-Type>text/directory</Content-Type>
-                                            <MTA-Module>DashboardPOC-deployer</MTA-Module>
+                                            <MTA-Module>org-onboarding-deployer</MTA-Module>
                                         </manifestEntries>
                                     </manifestSection>
                                 </manifestSections>

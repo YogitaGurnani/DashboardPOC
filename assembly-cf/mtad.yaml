@@ -1,11 +1,11 @@
 _schema-version: '3.1'
-ID: com.DashboardPOC
+ID: com.sap.iot.ain.orgonboarding
 version: 1.7.0
 
 modules:
- - name: DashboardPOC
+ - name: ain-orgonboarding-web
    type: javascript.nodejs
-   path: DashboardPOC
+   path: ain-orgonboarding-web
    parameters:
      memory: 128M
    properties:
