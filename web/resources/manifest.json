@@ -59,6 +59,17 @@
 				}
 			}
 		},
+		"config": {
+			"fullWidth": true,
+			"sapFiori2Adaptation": true,
+			"serviceConfig": {
+				"getTimeSeriesCall": {
+					"description": "get Time Series Call",
+					"url": "/Things('<thingID>')/dca.test.sap.mcmmay6th:M_MCM_May6th/M4/'IG_IGCM0,I_Indicator_NumCM'?timerange=6M&$apply=sap.lineChart(divisions=200)"
+				}
+			
+			}
+		},
 		"resources": {
 			"css": [{
 				"uri": "css/style.css"
